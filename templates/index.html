@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Comisiones - Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏢 Sistema de Comisiones de Ventas</h1>
+            <p>Filtra ventas por fechas y calcula comisiones automáticamente</p>
+        </header>
+
+        <main>
+            <!-- Filtros de Fecha -->
+            <section class="filters">
+                <h2>📅 Filtros de Fecha</h2>
+                <div class="filter-controls">
+                    <div class="filter-group">
+                        <label for="fechaInicio">Fecha de Inicio:</label>
+                        <input type="date" id="fechaInicio" required>
+                    </div>
+                    <div class="filter-group">
+                        <label for="fechaFin">Fecha de Fin:</label>
+                        <input type="date" id="fechaFin" required>
+                    </div>
+                    <button id="filtrarBtn" class="btn-primary">🔍 Filtrar Ventas</button>
+                </div>
+            </section>
+
+            <!-- Resumen de Comisiones -->
+            <section class="summary" id="resumenComisiones" style="display: none;">
+                <h2>💰 Resumen de Comisiones</h2>
+                <div class="summary-cards">
+                    <div class="card">
+                        <h3>Total Ventas</h3>
+                        <p id="totalVentas">$0.00</p>
+                    </div>
+                    <div class="card">
+                        <h3>Total Comisiones</h3>
+                        <p id="totalComisiones">$0.00</p>
+                    </div>
+                    <div class="card">
+                        <h3>Ventas Filtradas</h3>
+                        <p id="cantidadVentas">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tabla de Ventas -->
+            <section class="ventas-section">
+                <h2>📊 Ventas Filtradas</h2>
+                <div class="table-container">
+                    <table id="tablaVentas">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Vendedor</th>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                                <th>Comisión</th>
+                                <th>Regla Aplicada</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ventasBody">
+                            <!-- Los datos se cargarán dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Agregar Nueva Venta -->
+            <section class="nueva-venta">
+                <h2>➕ Agregar Nueva Venta</h2>
+                <form id="formNuevaVenta" class="venta-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="vendedorSelect">Vendedor:</label>
+                            <select id="vendedorSelect" required>
+                                <option value="">Seleccionar vendedor...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fechaVenta">Fecha:</label>
+                            <input type="date" id="fechaVenta" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="montoVenta">Monto ($):</label>
+                            <input type="number" id="montoVenta" step="0.01" min="0" required>
+                        </div>
+                        <button type="submit" class="btn-primary">💾 Agregar Venta</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Sistema de Comisiones - Xavier Gordillo</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html> 
